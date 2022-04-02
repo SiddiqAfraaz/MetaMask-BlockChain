@@ -1,0 +1,17 @@
+.Home-Content p{
+    background-color: rgb(255, 255, 255);
+    font-size: 22px;
+    padding-left: 50px;
+    padding-top: 28px;
+    padding-right: 60px;
+    text-align: justify;
+}
+
+.Home-Content h1{
+    background-color: rgb(255, 255, 255);
+    font-size: 40px;
+    padding-left: 50px;
+    padding-top: 60px;
+    padding-right: 60px;
+    text-align: center;
+}

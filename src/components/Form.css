@@ -1,0 +1,33 @@
+form{
+    display: absolute;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-left: -100px;
+    width: fit-content;
+    border-radius: 10px;
+    border-width: 1.7px;
+     
+}
+
+.muss{
+    margin-top: 50px;
+    text-align: center;
+    padding-bottom: 40px;
+    font-size:30px;
+}
+
+
+.form_center{
+    display:flex;
+  justify-content: center;
+}
+
+.sign_In{
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.signinlink{
+    color:rgb(255, 16, 107);
+}
