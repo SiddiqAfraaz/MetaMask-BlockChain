@@ -71,7 +71,7 @@ const FileUpload = ({ onSuccess }) => {
                 <tbody>
                   {uploads.map((upload) => (
                     <tr key={upload.cid}>
-                      <td className="column1">2017-09-29 01:22</td>
+                      <td className="column1">{upload.name}</td>
                       <td className="column2">
                         {upload ? upload.dagSize / 1000000 + "Mb" : ""}
                       </td>
