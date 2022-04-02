@@ -77,10 +77,14 @@ const FileUpload = ({ onSuccess }) => {
                       </td>
                       <td className="column3">{upload ? upload.cid : ""}</td>
                       <td className="column4">
-                        {upload ? upload.pins.length : ""}
+                        {upload && upload.pins.length > 0
+                          ? upload.pins.length
+                          : "In Queue"}
                       </td>
                       <td className="column5">
-                        {upload ? upload.deals.length : ""}
+                        {upload && upload.deals.length > 0
+                          ? upload.deals.length
+                          : "In Queue"}
                       </td>
                       <td className="column6">
                         <button onClick={() => onDownload(upload.cid)}>
