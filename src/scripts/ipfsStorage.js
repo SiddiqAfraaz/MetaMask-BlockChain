@@ -47,24 +47,23 @@ export async function storefile(files) {
   //   return await client.put(files, { onRootCidReady, onStoredChunk });
 
   const client = makeStorageClient();
-  const cid = await client.put(files, { onRootCidReady: onRootCidReady });
+  const cid = await client.put(files);
   console.log("stored files with cid:", cid);
   return cid;
 }
 
 export async function listUploads() {
   const client = makeStorageClient();
+  const uploads = [];
   for await (const upload of client.list()) {
-    console.log(
-      `${upload.name} - cid: ${upload.cid} - size: ${upload.dagSize}`
-    );
+    uploads.push(upload);
   }
+  return uploads;
 }
 
 export async function checkStatus(cid) {
   const client = makeStorageClient();
   const status = await client.status(cid);
-  console.log(status);
   if (status) {
     return status;
   }
