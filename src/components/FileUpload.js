@@ -1,28 +1,17 @@
 import { useState } from "react";
 import React from "react";
+import { FileUploader } from "react-drag-drop-files";
 
 import "./FileUpload.css";
-import { storefile, retrieveFile, checkStatus } from "../helpers/ipfsStorage";
+import { storefile, retrieveFile, checkStatus } from "../scripts/ipfsStorage";
 
-const FileUploader = ({ onSuccess }) => {
+const FileUpload = ({ onSuccess }) => {
   const [files, setFiles] = useState([]);
   const [cid, setCid] = useState("");
 
-  const onInputChange = (e) => {
-    setFiles(e.target.files);
-  };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    const data = new FormData();
-
-    for (let i = 0; i < files.length; i++) {
-      data.append("file", files[i]);
-    }
-
+  const onInputChange = (files) => {
+    setFiles(files);
     console.log(files);
-
     storefile(files).then((cid) => {
       setCid(cid);
       console.log(cid);
@@ -37,23 +26,16 @@ const FileUploader = ({ onSuccess }) => {
 
   return (
     <>
-      <form method="post" action="#" id="#" onSubmit={onSubmit}>
-        <div className="form-group files">
-          <label>Upload Your File </label>
-          <input
-            type="file"
-            onChange={onInputChange}
-            className="form-control"
-            multiple
-          />
-        </div>
-
-        <button>Submit</button>
-      </form>
+      <FileUploader multiple={true} handleChange={onInputChange} name="file" />
+      <p>
+        {files.length > 0
+          ? `File name: ${files[0].name}`
+          : "no files uploaded yet"}
+      </p>
       <br />
       <button onClick={onRetrieve}>Retrieve</button>
     </>
   );
 };
 
-export default FileUploader;
+export default FileUpload;

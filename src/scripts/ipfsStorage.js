@@ -24,10 +24,10 @@ export async function retrieveFile(cid) {
 }
 
 export async function storefile(files) {
-  //   // show the root cid as soon as it's ready
-  //   const onRootCidReady = (cid) => {
-  //     console.log("uploading files with cid:", cid);
-  //   };
+  // show the root cid as soon as it's ready
+  const onRootCidReady = (cid) => {
+    console.log("uploading files with cid:", cid);
+  };
 
   //   // when each chunk is stored, update the percentage complete and display
   //   const totalSize = files.map((f) => f.size).reduce((a, b) => a + b, 0);
@@ -47,7 +47,7 @@ export async function storefile(files) {
   //   return await client.put(files, { onRootCidReady, onStoredChunk });
 
   const client = makeStorageClient();
-  const cid = await client.put(files);
+  const cid = await client.put(files, { onRootCidReady: onRootCidReady });
   console.log("stored files with cid:", cid);
   return cid;
 }
